@@ -20,11 +20,11 @@ type DoorFactory interface {
 type WoodenDoorFactory struct{}
 
 func (wdf *WoodenDoorFactory) makeDoor() Door {
-	return &WoodenDoor{}
+	return new(WoodenDoor)
 }
 
 func (wdf *WoodenDoorFactory) makeFittingExpert() FittingExpert {
-	return &Carpenter{}
+	return new(Carpenter)
 }
 
 type WoodenDoor struct{}
@@ -36,11 +36,11 @@ func (wd *WoodenDoor) getDescription() {
 type IronDoorFactory struct{}
 
 func (idf *IronDoorFactory) makeDoor() Door {
-	return &IronDoor{}
+	return new(IronDoor)
 }
 
 func (id *IronDoorFactory) makeFittingExpert() FittingExpert {
-	return &Welder{}
+	return new(Welder)
 }
 
 type IronDoor struct{}
@@ -62,8 +62,8 @@ func (w *Welder) getDescription() {
 }
 
 func main() {
-	woodenDoorFactory := WoodenDoorFactory{}
-	ironDoorFactory := IronDoorFactory{}
+	woodenDoorFactory := new(WoodenDoorFactory)
+	ironDoorFactory := new(IronDoorFactory)
 
 	woodenDoor := woodenDoorFactory.makeDoor()
 	ironDoor := ironDoorFactory.makeDoor()
